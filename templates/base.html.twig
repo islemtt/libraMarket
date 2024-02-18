@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        <link href="{{ asset('assets/style.css') }}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- ===============================================-->
+        <!--    Document Title-->
+        <!-- ===============================================-->
+        <title>LibraMarket</title>
+
+        <!-- ===============================================-->
+        <!--    Favicons-->
+        <!-- ===============================================-->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicons/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicons/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicons/favicon-16x16.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicons/favicon.ico') }}">
+        <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
+        <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- ===============================================-->
+        <!--    Stylesheets-->
+        <!-- ===============================================-->
+        <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet"/>
+        
+    {% endblock %}
+    {% block javascripts %}
+
+        <!-- ===============================================-->
+        <!--    JavaScripts-->
+        <!-- ===============================================-->
+        <script src="{{ asset('vendors/%40popperjs/popper.min.js') }}"></script>
+        <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('vendors/is/is.min.js') }}"></script>
+        <script src="{{ asset('../../../polyfill.io/v3/polyfill.min58be.js?features=window.scroll') }}"></script>
+        <script src="{{ asset('assets/js/theme.js') }}"></script>
+        <link href="{{ asset('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;display=swap') }}"
+              rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    {% include 'partials/navbar.html.twig' %}
+{% endblock %}
+{% block body %} {% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+    <div class="container-sm">
+        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Category</div>
+
+
+            <div class="card-body">
+                <h5 class="card-title">{{ category.id }}</h5>
+                <p class="card-text">{{ category.titre }}</p>
+
+
+                <a href="{{ path('app_category_index') }}"><span
+                            class="glyphicon glyphicon-backward"></span></a>
+                <br>
+
+                <a href="{{ path('app_category_edit', {'id': category.id}) }}"><span
+                            class="glyphicon glyphicon-pencil"></span></a>
+
+
+
+
+
+
+
+    {{ include('category/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <h1>Product index</h1>
+
+    {#<table class="table">#}
+    {#    <thead>#}
+    {#    <tr>#}
+    {#        <th>Id</th>#}
+    {#        <th>Titre</th>#}
+    {#        <th>Prix</th>#}
+    {#        <th>actions</th>#}
+    {#    </tr>#}
+    {#    </thead>#}
+    {#    <tbody>#}
+    {#    {% for product in products %}#}
+    {#        <tr>#}
+    {#            <td>{{ product.id }}</td>#}
+    {#            <td>{{ product.titre }}</td>#}
+    {#            <td>{{ product.prix }}</td>#}
+    {#            <td>#}
+    {#                <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>#}
+    {#                <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>#}
+    {#            </td>#}
+    {#        </tr>#}
+    {#    {% else %}#}
+    {#        <tr>#}
+    {#            <td colspan="4">no records found</td>#}
+    {#        </tr>#}
+    {#    {% endfor %}#}
+    {#    </tbody>#}
+    {#</table>#}
+
+    <div class="card-group container-sm">
+        {% for product in products %}
+
+            <div class="card">
+                <a href="{{ path('app_product_show', {'id': product.id}) }}"><img class="card-img-top"
+                     src="https://img.freepik.com/premium-vector/cardboard-box-logo-template-design_316488-1516.jpg"
+                     alt="Card image cap"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.titre }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">{{ product.prix }}</p>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">no records found</h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a class="btn btn-primary" href="{{ path('app_product_new') }}" class="customIslem">Create new</a>
+
+{% endblock %}

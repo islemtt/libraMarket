@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+<div class="container-sm">
+
+{#<h1>Product</h1>#}
+
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ product.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Titre</th>#}
+{#                <td>{{ product.titre }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Prix</th>#}
+{#                <td>{{ product.prix }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_product_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>#}
+
+{#    {{ include('product/_delete_form.html.twig') }}#}
+{#</div>#}
+
+    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Product</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ product.titre }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">{{ product.prix }}</p>
+
+            <a href="{{ path('app_product_index', {'id': product.id}) }}"><span
+                        class="glyphicon glyphicon-backward"></span></a>
+
+
+            <br>
+            <a href="{{ path('app_product_edit', {'id': product.id}) }}"><span
+                        class="glyphicon glyphicon-pencil"></span></a>
+
+            {{ include('product/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
