@@ -38,7 +38,7 @@
 
             <div class="card">
                 <a href="{{ path('app_product_show', {'id': product.id}) }}"><img class="card-img-top"
-                     src="https://img.freepik.com/premium-vector/cardboard-box-logo-template-design_316488-1516.jpg"
+                     src="{{ asset('uploads/' ~ product.img) }}" width="70px" height="200px"
                      alt="Card image cap"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ product.titre }}</h5>

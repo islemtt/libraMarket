@@ -1,0 +1,40 @@
+{% extends 'Front_base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <h1>Product index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>image</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+
+                <td>{{ product.titre }}</td>
+                <td>{{ product.prix }}</td>
+                <td>{{ product.description }}</td>
+                <td >{{ product.category }}</td>
+                <td> <img src="{{ asset('uploads/' ~ product.img) }}" width="90px" height="80px" alt="">     </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

@@ -30,6 +30,26 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //parti ajout image
+            $imageFile = $form->get('img')->getData();
+
+            if ($imageFile) {
+                $imageName = uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads',
+                        $imageName
+                    );
+                } catch (FileException $e) {
+                    // Handle file upload error
+                }
+
+                $product->setImg($imageName);
+            }
+            //end parti ajout image
+
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -57,6 +77,25 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //partie ajout image
+            $imageFile = $form->get('img')->getData();
+
+            if ($imageFile) {
+                $imageName = uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads',
+                        $imageName
+                    );
+                } catch (FileException $e) {
+                    // Handle file upload error
+                }
+
+                $product->setImg($imageName);
+            }
+            //end partie ajout image
+            $entityManager->persist($product);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);

@@ -20,4 +20,9 @@ class HomeController extends AbstractController
     {
         return $this->render('LibraMarket/index.html.twig');
     }
+    #[Route('/front', name: 'front')]
+    public function front(): Response
+    {
+        return $this->render('Front_base.html.twig');
+    }
 }
