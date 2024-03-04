@@ -10,6 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -61,7 +65,7 @@ class ProductController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[ParamConverter('product', class: 'App\Entity\Product')]
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
     public function show(Product $product): Response
     {
@@ -116,6 +120,33 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/pdf', name: 'pdf_generate')]
+     public function generatePDF(ProductRepository $repository): Response
+    {
+
+        $product=$repository->findAll() ;
+        // Générer le contenu du PDF
+            $pdfContent = $this->renderView('product/pdf.html.twig', [
+            'product' => $product,
+        ]);
+
+        // Instancier Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        // Charger le contenu HTML dans Dompdf
+        $dompdf->loadHtml($pdfContent);
+
+        // Rendre le PDF
+        $dompdf->render();
+
+        // Renvoyer le PDF en réponse
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="product.pdf"',
+        ]);
     }
     
 }

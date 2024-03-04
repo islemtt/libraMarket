@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+pdf_generate:
+    path: /generate-pdf
+    controller: App\Controller\ProductController::generatePDF

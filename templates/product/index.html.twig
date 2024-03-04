@@ -5,6 +5,10 @@
 {% block body %}
     <h1>Product index</h1>
 
+
+    
+
+
     {#<table class="table">#}
     {#    <thead>#}
     {#    <tr>#}
@@ -32,8 +36,38 @@
     {#    {% endfor %}#}
     {#    </tbody>#}
     {#</table>#}
-
+    
     <div class="card-group container-sm">
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher...">
+        <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll('tbody tr');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let found = false;
+
+                cells.forEach(cell => {
+                    const text = cell.textContent.trim().toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>
+
         {% for product in products %}
 
             <div class="card">
@@ -59,5 +93,6 @@
     </div>
 
     <a class="btn btn-primary" href="{{ path('app_product_new') }}" class="customIslem">Create new</a>
+    <a class="btn btn-primary" href="{{ path('pdf_generate') }}" class="customIslem">pdf</a>
 
 {% endblock %}
